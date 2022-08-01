@@ -28,6 +28,9 @@ h1{
 .jcccenter{
 	justify-content: center;
 }
+.buttons{
+	margin: 2vh 0;
+}
 button{
   display: inline-block;
   font-size:medium;
