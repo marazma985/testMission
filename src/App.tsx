@@ -86,8 +86,11 @@ const App = () => {
 	}
 	const changeModalShow=()=>{
 		setActivity2(true);
-		setValueNameChange(users[indexRecord].name)
-		setValueNumberChange(users[indexRecord].number)
+		if(indexRecord!==-1){
+			setValueNameChange(users[indexRecord].name)
+			setValueNumberChange(users[indexRecord].number)
+		}
+		
 	}
 
 
@@ -95,7 +98,7 @@ const App = () => {
 		<div className="App">
 			<header className="App-header">
 				<h1>Контакты</h1>
-				<div className='flex'>
+				<div className='flex buttons'>
 					<button onClick={()=>setActivity(true)}>Добавить</button>
 					<button onClick={()=>changeModalShow()}>Изменить</button>
 					<button onClick={()=>setActivity1(true)}>Удалить</button>
