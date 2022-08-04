@@ -9,6 +9,7 @@ import InputMask from "react-input-mask";
 const App = () => {
 	const urlServer = "https://enigmatic-fjord-56411.herokuapp.com/api/";
 	const [users,setUsers]=useState<IUsers[]>([]);
+	const [loader,setLoader]=useState<boolean>(true);
 
 	useEffect(()=>{
 		getUsers();
@@ -17,6 +18,7 @@ const App = () => {
 		try{
 			const response = await axios.get<IUsers[]>(urlServer+'contacts');
 			setUsers(response.data);
+			setLoader(false);
 		}
 		catch(e){console.log(e)}
 	}
@@ -96,7 +98,9 @@ const App = () => {
 
 	return (
 		<div className="App">
+			{!loader?
 			<header className="App-header">
+				
 				<h1>Контакты</h1>
 				<div className='flex buttons'>
 					<button onClick={()=>setActivity(true)}>Добавить</button>
@@ -141,6 +145,7 @@ const App = () => {
 					: <div><p>Выберите контакт который хотите изменить кликнув по нему</p></div>}
 				</Modal>
 			</header>
+				: <div className='bodyloader'><div className="lds-dual-ring"></div></div>}
 		</div>
 	);
 }
